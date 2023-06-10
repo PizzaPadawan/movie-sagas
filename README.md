@@ -15,21 +15,29 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - Bring user to a /details page for the movie onClick of the poster
     - [] onClick sends 'FETCH_DETAILS' dispatch with movie.id and history.pushes user to /details/:id
 - Details page
-    - [] Code comments
-    - [] git commit
     - [] Use Sagas / Reducers to show all genres, title description, and image
         - Backend
-            - [] details.router.js with router.get('/:id')
-            - [] SQL JOIN query to get all movie genres
+            - [x] Code comments
+            - [x] git commit
+            - [x] movie.router.js => router.get('/:id')
+            - [x] SQL JOIN query to get all movie genres
         - Redux
-            - [] _root.saga.js
-                - [] 'FETCH_DETAILS' with payload in req.params
-            - [] _root.reducer.js
-                - [] 'SET_DETAILS'
+            - [x] _root.saga.js
+                - [x] Code comments
+                - [x] git commit
+                - [x] 'FETCH_DETAILS' with payload in req.params
+            - [x] _root.reducer.js
+                - [x] Code comments
+                - [x] git commit
+                    - [x] 'SET_DETAILS'
         - Frontend
-            - [] react-router-dom
+            - [] Code comments
+            - [] git commit
+            - [x] react-router-dom
             - [] Details.jsx
     - [] Back To List button history.pushes user back to home page
+        - [] Code comments
+        - [] git commit
 
 - STYLE IT UP. 
     - [] MUI dark theme
@@ -42,3 +50,22 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
         - [] Typography on details
 
 ### STRETCH
+
+- Add Movie page
+    - Form
+        - [] input for title
+        - [] input for poster url
+        - [] textfield for description
+        - [] 3 dropdowns for genres
+    - [] Cancel button to go back to home page
+    - [] Save button to submit new movie / push to home page
+- Refresh on Details page
+    - [] useParams
+- Edit page in Details page
+    - [] input field to change movie title
+    - [] textarea to change description
+        - [] STRETCH: display current values in input / textfield
+    - [] STRETCH: add / remove genre
+    - [] cancel button to push back to Details page
+    - [] save button to update database and push back to Details page
+- Only show top 10 movies, and add a search bar to the home page
