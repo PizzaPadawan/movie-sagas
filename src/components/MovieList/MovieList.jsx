@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './MovieList.css'
-import { Grid, Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Grid, Card, CardActionArea, CardContent, Typography, Container } from '@mui/material';
 
 function MovieList() {
 
@@ -17,12 +17,13 @@ function MovieList() {
 
 
     return (
-        <main>
+        <Container>
             <Typography variant="h2">MovieList</Typography>
-            <Grid container sx={{justifyContent: 'center'}} spacing={3} columns={11}>
+            <br/>
+            <Grid container sx={{justifyContent: 'center'}} spacing={3}>
                 {movies.map(movie => {
                     return (
-                        <Grid item xs={1.5} key={movie.id} >
+                        <Grid item xs={3} key={movie.id} >
                             <Card>
                                 <CardContent sx={{ textAlign: 'center' }}>
                                     <h3>{movie.title}</h3>
@@ -38,7 +39,7 @@ function MovieList() {
                     );
                 })}
             </Grid>
-        </main>
+        </Container>
 
     );
 }
