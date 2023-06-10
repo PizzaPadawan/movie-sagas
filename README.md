@@ -13,9 +13,8 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 ### Base
 
 - Bring user to a /details page for the movie onClick of the poster
-    - [] onClick sends 'FETCH_DETAILS' dispatch with movie.id and history.pushes user to /details/:id
 - Details page
-    - [] Use Sagas / Reducers to show all genres, title description, and image
+    - [x] Use Sagas / Reducers to show all genres, title description, and image
         - Backend
             - [x] Code comments
             - [x] git commit
