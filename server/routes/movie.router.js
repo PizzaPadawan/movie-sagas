@@ -16,6 +16,29 @@ router.get('/', (req, res) => {
 
 });
 
+// GET request to retrieve individual movie details
+router.get('/:id', (req, res) => {
+  // get info on what we're sending
+  console.log(req.params)
+  // assign id key to send as variable on pool.query
+  const movieId = req.params.id
+  // SQL join query for M2M table relationships, STRING_AGG shows genres as a list separated by commas
+  const queryText = `SELECT movies.title, movies.poster, movies.description, STRING_AGG(genres.name, ', ') AS genre FROM movies
+  JOIN movies_genres ON movies_genres.movie_id=movies.id
+  JOIN genres ON genres.id=movies_genres.genre_id
+  WHERE movies.id=$1
+  GROUP BY movies.title, movies.poster, movies.description;`
+
+  pool.query(queryText, [movieId])
+  .then(result => {
+    // send our data back
+    res.send(result.rows)
+  }).catch(error => {
+    console.log("error on server-side details GET", error);
+    res.sendStatus(500);
+  })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
