@@ -3,7 +3,8 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import MovieList from '../MovieList/MovieList'
 import Details from '../Details/Details';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Typography } from '@mui/material';
+import TheatersIcon from '@mui/icons-material/Theaters';
 
 const darkTheme = createTheme({
   palette: {
@@ -16,7 +17,9 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
-        <h1>The Movies Saga!</h1>
+        <Typography variant="h1" align="center" >
+          <TheatersIcon fontSize='large' color="secondary" /> the movies saga <TheatersIcon fontSize='large' color="secondary"/>
+        </Typography>
         <Router>
           <Route path="/" exact>
             <MovieList />

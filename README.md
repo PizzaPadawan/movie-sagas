@@ -39,11 +39,11 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
         - [x] git commit
 
 - STYLE IT UP. 
-    - [] MUI dark theme
+    - [x] MUI dark theme
     - Home page
-        - [] Grid
-        - [] Cards
-        - [] STRETCH: Cards animate / change on hover
+        - [x] Grid
+        - [x] Cards
+        - [x] STRETCH: Cards animate / change on hover
     - Details page
         - [] Movie poster left justified
         - [] Typography on details
