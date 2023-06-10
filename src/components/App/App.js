@@ -11,9 +11,8 @@ function App() {
         <Route path="/" exact>
           <MovieList />
         </Route>
-        
-        {/* Details page */}
-        <Route path='/details/'>
+        {/* Details page with params variable included */}
+        <Route path='/details/:id'>
           <Details />
         </Route>
         {/* Add Movie page */}

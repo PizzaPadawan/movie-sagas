@@ -17,7 +17,7 @@ function* fetchAllMovies() {
     } catch {
         console.log('get all error');
     }
-        
+
 }
 
 // get req to server side to grab details from router GET req
@@ -28,7 +28,7 @@ function* fetchDetails(action) {
         // log data
         console.log("returning movie details:", response.data);
         // send data to redux store
-        yield put ({ type: 'SET_DETAILS', payload: response.data});
+        yield put({ type: 'SET_DETAILS', payload: response.data });
     } catch (error) {
         console.log("error on fetchDetails saga", error);
     }

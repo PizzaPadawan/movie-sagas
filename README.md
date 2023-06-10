@@ -31,13 +31,13 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
                 - [x] git commit
                     - [x] 'SET_DETAILS'
         - Frontend
-            - [] Code comments
-            - [] git commit
+            - [x] Code comments
+            - [x] git commit
             - [x] react-router-dom
-            - [] Details.jsx
-    - [] Back To List button history.pushes user back to home page
-        - [] Code comments
-        - [] git commit
+            - [x] Details.jsx
+    - [x] Back To List button history.pushes user back to home page
+        - [x] Code comments
+        - [x] git commit
 
 - STYLE IT UP. 
     - [] MUI dark theme
