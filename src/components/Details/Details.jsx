@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { useEffect } from "react";
 import { Grid, Typography, Button, Container, Card } from "@mui/material";
+import "./Details.css"
 
 export default function Details() {
 
@@ -22,13 +23,13 @@ export default function Details() {
     return (
         <Container>
             <Typography variant="h2">MovieDetails</Typography>
-            <br/>
+            <br />
             {/* only renders movie once store has been updated */}
             {movie &&
-                <Card sx={{padding: 3}}>
+                <Card sx={{ padding: 3 }}>
                     <Grid container spacing={6}>
                         <Grid item xs={3}>
-                            <img src={movie.poster} />
+                            <img className="posterDetails" src={movie.poster} />
                         </Grid>
                         <Grid item xs={8}>
                             <Typography variant="h3">{movie.title}</Typography>
@@ -37,11 +38,13 @@ export default function Details() {
                             <Typography variant="body1">{movie.description}</Typography>
                         </Grid>
                     </Grid >
-                    <br/>
-                    <Button variant="outlined" color="secondary" onClick={() => history.push("/")} >Back to List</Button>
+                    <br />
+                    {/* button to go back to movie list */}
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={() => history.push("/")}>Back to List</Button>
                 </Card>}
-            {/* button to go back to movie list */}
-
         </Container>
     )
 }

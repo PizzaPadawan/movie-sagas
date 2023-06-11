@@ -6,6 +6,8 @@ import {
     Typography,
     Card,
 } from "@mui/material"
+
+// hook imports
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
@@ -21,7 +23,9 @@ export default function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // click handler to post new movie
     const postMovie = () => {
+        // builds object to send in payload
         const newMovie = {
             title: selectedTitle,
             poster: selectedPoster,
@@ -29,22 +33,21 @@ export default function AddMovie() {
             genre_id: selectedGenre,
         }
 
+        // validates all fields are filled out
         if (!selectedTitle || !selectedPoster || !selectedDescription || !selectedGenre) {
             alert("Please fill out all fields")
             return
         }
 
+        // sends dispatch to saga with newMovie object
         dispatch({ type: "ADD_MOVIE", payload: newMovie })
+        // pushes user back to MovieList home page
         history.push("/")
-    }
-
-    const handleChange = (e) => {
-        setSelectedGenre(e)
-        console.log(selectedGenre)
     }
 
     return (
         <Container>
+            {/* Container to display header and Cancel button on the same line */}
             <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="outlined"
                     sx={{ m: 2 }}
@@ -64,13 +67,13 @@ export default function AddMovie() {
                     sx={{ width: 225 }}
                     label="Poster URL"
                     value={selectedPoster}
-                    onChange={e => setSelectedPoster(e.target.value)} />
+                    onChange={e => setSelectedPoster(e.target.value)} />            
                 <TextField
                     sx={{ width: 225 }}
                     label="Genre"
                     select
                     value={selectedGenre}
-                    onChange={e => handleChange(e.target.value)}>
+                    onChange={e => setSelectedGenre(e.target.value)}>
                     <MenuItem value={1}>Adventure</MenuItem>
                     <MenuItem value={2}>Animated</MenuItem>
                     <MenuItem value={3}>Biographical</MenuItem>
