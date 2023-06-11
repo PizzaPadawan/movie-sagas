@@ -2,7 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './MovieList.css'
-import { Grid, Card, CardActionArea, CardContent, Typography, Container } from '@mui/material';
+import {
+    Grid,
+    Button,
+    Card,
+    CardActionArea,
+    CardContent,
+    Typography,
+    Container
+} from '@mui/material';
 
 function MovieList() {
 
@@ -18,9 +26,17 @@ function MovieList() {
 
     return (
         <Container>
-            <Typography variant="h2">MovieList</Typography>
-            <br/>
-            <Grid container sx={{justifyContent: 'center'}} spacing={3}>
+            <Container sx={{display: 'flex', justifyContent: 'space-between'}} >
+                <Typography variant="h2">MovieList</Typography>
+                <Button 
+                sx={{m:1}}
+                variant="outlined" 
+                color="secondary" 
+                size="large" 
+                onClick={() => history.push('/add')}>Add Movie</Button>
+            </Container>
+            <br />
+            <Grid container sx={{ justifyContent: 'center' }} spacing={3}>
                 {movies.map(movie => {
                     return (
                         <Grid item xs={3} key={movie.id} >
@@ -28,7 +44,8 @@ function MovieList() {
                                 <CardContent sx={{ textAlign: 'center' }}>
                                     <h3>{movie.title}</h3>
                                     <CardActionArea>
-                                        <img
+                                        <img    
+                                            className="moviePoster"
                                             src={movie.poster}
                                             alt={movie.title}
                                             onClick={() => history.push(`/details/${movie.id}`)} />

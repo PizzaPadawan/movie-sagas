@@ -45,8 +45,8 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
         - [x] Cards
         - [x] STRETCH: Cards animate / change on hover
     - Details page
-        - [] Movie poster left justified
-        - [] Typography on details
+        - [x] Movie poster left justified
+        - [x] Typography on details
 
 ### STRETCH
 
