@@ -34,7 +34,7 @@ export default function AddMovie() {
             return
         }
 
-        dispatch({type: "ADD_MOVIE", payload: newMovie})
+        dispatch({ type: "ADD_MOVIE", payload: newMovie })
         history.push("/")
     }
 
@@ -45,16 +45,17 @@ export default function AddMovie() {
 
     return (
         <Container>
-            <Container sx={{display: 'flex', justifyContent: 'space-between'}}>
-                <Button variant="text"
+            <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Button variant="outlined"
+                    sx={{ m: 2 }}
                     color="secondary"
                     size="large"
                     onClick={() => history.push("/")}>Cancel</Button>
                 <Typography variant="h2" sx={{ m: 1 }} >AddMovie</Typography>
             </Container>
-            <Card sx={{ padding: 3 }}>
+            <Card sx={{ paddingTop: 3, paddingBottom: 3, paddingLeft: 30 }}>
                 <TextField
-                    sx={{ width: 225, marginLeft: 6 }}
+                    sx={{ width: 225 }}
                     label="Title"
                     value={selectedTitle}
                     onChange={e => setSelectedTitle(e.target.value)}
@@ -64,12 +65,6 @@ export default function AddMovie() {
                     label="Poster URL"
                     value={selectedPoster}
                     onChange={e => setSelectedPoster(e.target.value)} />
-                <TextField
-                    sx={{ width: 225 }}
-                    label="Description"
-                    multiline
-                    value={selectedDescription}
-                    onChange={e => setSelectedDescription(e.target.value)} />
                 <TextField
                     sx={{ width: 225 }}
                     label="Genre"
@@ -90,8 +85,17 @@ export default function AddMovie() {
                     <MenuItem value={12}>Space Opera</MenuItem>
                     <MenuItem value={13}>Superhero</MenuItem>
                 </TextField>
+                <br />
+                <TextField
+                    sx={{ width: 675, marginTop: 2 }}
+                    rows={3}
+                    label="Description"
+                    multiline
+                    value={selectedDescription}
+                    onChange={e => setSelectedDescription(e.target.value)} />
+                <br />
                 <Button
-                    sx={{ m: 1 }}
+                    sx={{ marginTop: 2, marginLeft: 71.5 }}
                     variant="contained"
                     color="secondary"
                     size="large"
