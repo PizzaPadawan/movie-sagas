@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
   pool.query(query)
-    .then( result => {
+    .then(result => {
       res.send(result.rows);
     })
     .catch(err => {
@@ -28,13 +28,13 @@ router.get('/:id', (req, res) => {
   GROUP BY movies.id, movies.title, movies.poster, movies.description;`
 
   pool.query(queryText, [movieId])
-  .then(result => {
-    // send our data back
-    res.send(result.rows)
-  }).catch(error => {
-    console.log("error on server-side details GET", error);
-    res.sendStatus(500);
-  })
+    .then(result => {
+      // send our data back
+      res.send(result.rows)
+    }).catch(error => {
+      console.log("error on server-side details GET", error);
+      res.sendStatus(500);
+    })
 })
 
 router.post('/', (req, res) => {
@@ -47,13 +47,13 @@ router.post('/', (req, res) => {
 
   // FIRST QUERY MAKES MOVIE
   pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
-  .then(result => {
-    console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
-    
-    const createdMovieId = result.rows[0].id
+    .then(result => {
+      console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
 
-    // Now handle the genre reference
-    const insertMovieGenreQuery = `
+      const createdMovieId = result.rows[0].id
+
+      // Now handle the genre reference
+      const insertMovieGenreQuery = `
       INSERT INTO "movies_genres" ("movie_id", "genre_id")
       VALUES  ($1, $2);
       `
@@ -67,24 +67,24 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
       })
 
-// Catch for first query
-  }).catch(err => {
-    console.log(err);
-    res.sendStatus(500)
-  })
+      // Catch for first query
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
 })
 
 router.put('/:id', (req, res) => {
+  console.log(req.params, req.body)
   const queryText = `UPDATE "movies"
   SET "title"=$1, "description"=$2
   WHERE "id"=$3;`
-  
-  pool.query(queryText [req.body.title, req.body.description, req.params.id])
-  .then(result => res.sendStatus(200))
-  .catch(err => {
-    console.log("error on router put", err);
-    res.sendStatus(500);
-  })
+  pool.query(queryText, [req.body.title, req.body.description, req.params.id])
+    .then(result => res.sendStatus(200))
+    .catch(err => {
+      console.log("error on router put", err);
+      res.sendStatus(500);
+    })
 })
 
 module.exports = router;
