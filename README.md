@@ -1,70 +1,45 @@
-# Project Name
+![REPO SIZE](https://img.shields.io/github/repo-size/scottbromander/the_marketplace.svg?style=flat-square)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
+![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# the movies saga
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Welcome to 'the movies saga,' a project created to log a collection of movies, allow the user to view and edit details of movies in the collection, as well as add new movies. The template given already had the main homepage you see (without the styling), and we were tasked to add the other functionalities seen by testing our knowledge of the previous week's lessons using Redux Sagas as well as writing SQL many-to-many JOIN statements.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Screenshots
+The MovieList home page, where a user may see the list of movies, click a poster for more details, and click the Add Movie button to go to the AddMovie page.
+![homepage](./public/images/screenshots/homepage.png)
 
-## TODO
+The MovieDetails page, where a user may view further details such as genre(s) and description, and edit the title and description of the film.
+![details page](./public/images/screenshots/details.png)
 
-### Base
+The MovieDetails page in edit mode, where a user may edit title and description.
+![edit page](./public/images/screenshots/edit.png)
 
-- Bring user to a /details page for the movie onClick of the poster
-- Details page
-    - [x] Use Sagas / Reducers to show all genres, title description, and image
-        - Backend
-            - [x] Code comments
-            - [x] git commit
-            - [x] movie.router.js => router.get('/:id')
-            - [x] SQL JOIN query to get all movie genres
-        - Redux
-            - [x] _root.saga.js
-                - [x] Code comments
-                - [x] git commit
-                - [x] 'FETCH_DETAILS' with payload in req.params
-            - [x] _root.reducer.js
-                - [x] Code comments
-                - [x] git commit
-                    - [x] 'SET_DETAILS'
-        - Frontend
-            - [x] Code comments
-            - [x] git commit
-            - [x] react-router-dom
-            - [x] Details.jsx
-    - [x] Back To List button history.pushes user back to home page
-        - [x] Code comments
-        - [x] git commit
+The AddMovie page, where a user may submit a new film to the list.
+![add page](./public/images/screenshots/add.png)
 
-- STYLE IT UP. 
-    - [x] MUI dark theme
-    - Home page
-        - [x] Grid
-        - [x] Cards
-        - [x] STRETCH: Cards animate / change on hover
-    - Details page
-        - [x] Movie poster left justified
-        - [x] Typography on details
+## Installation
+1. Create a database called `saga_movies_weekend`
+2. Run the queries provided in the `database.sql` file
+3. Open the project in your code editor and run an `npm i`
+4. `npm run server`
+5. `npm run client`
 
-### STRETCH
+## Usage
+- Click on a movie poster to view further details about the film
+- Click the `EDIT MOVIE` button to switch to edit mode, where you may change the film's title or description. Click the `CANCEL` button any time to leave edit mode without committing changes, or click `SAVE` to save your changes.
+- Click the `BACK TO LIST` button on MovieDetails screen to go back to the MovieList
+- Click the `ADD MOVIE` button and fill out all the forms with applicable content to add a new movie. I recommend using Wikipedia for descriptions, and be sure your poster url is less than 120 characters long.
 
-- Add Movie page
-    - Form
-        - [] input for title
-        - [] input for poster url
-        - [] textfield for description
-        - [] 3 dropdowns for genres
-    - [] Cancel button to go back to home page
-    - [] Save button to submit new movie / push to home page
-- Refresh on Details page
-    - [] useParams
-- Edit page in Details page
-    - [] input field to change movie title
-    - [] textarea to change description
-        - [] STRETCH: display current values in input / textfield
-    - [] STRETCH: add / remove genre
-    - [] cancel button to push back to Details page
-    - [] save button to update database and push back to Details page
-- Only show top 10 movies, and add a search bar to the home page
+## Built with
+- [React](https://react.dev)
+- [Redux](https://react-redux.js.org/)
+- [Redux Saga](https://redux-saga.js.org/)
+- [React Router](https://reactrouter.com/en/main)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Express](https://expressjs.com/)
+- [Material UI](https://mui.com/material-ui/getting-started/overview/)
