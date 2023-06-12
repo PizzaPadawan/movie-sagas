@@ -6,6 +6,7 @@ export default function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_DETAILS', fetchDetails);
     yield takeEvery('ADD_MOVIE', addMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
 function* fetchAllMovies() {
@@ -38,10 +39,22 @@ function* fetchDetails(action) {
 function* addMovie(action){
     try {
         // reach out to post req on backend
-        yield axios.post('/api/movie/', action.payload)
+        yield axios.post('/api/movie/', action.payload);
         // refresh movie list
-        yield put({type: 'FETCH_MOVIES'})
+        yield put({type: 'FETCH_MOVIES'});
     } catch (error) {
         console.log("error on addMovie saga", error);
+    }
+}
+
+function* editMovie(action){
+    try {
+        // put request with id in params, other details in update object
+        yield axios.put(`/api/movie/${action.payload.id}`, action.payload.update);
+        // refresh movie list
+        yield put({type: 'FETCH_MOVIES'});
+        yield put ({type: 'FETCH_DETAILS', payload: {id: action.payload.id}})
+    } catch (error) {
+        console.log("error on editMovie saga", error);
     }
 }

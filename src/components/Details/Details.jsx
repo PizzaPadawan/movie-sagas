@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { useEffect } from "react";
-import { Grid, Typography, Button, Container, Card } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Grid, Typography, Button, Container, Card, TextField } from "@mui/material";
 import "./Details.css"
 
 export default function Details() {
@@ -11,6 +11,11 @@ export default function Details() {
     const dispatch = useDispatch();
     const params = useParams();
 
+    // local state
+    const [editMode, setEditMode] = useState(false)
+    const [newTitle, setNewTitle] = useState("")
+    const [newDesc, setNewDesc] = useState("")
+
     // send dispatch on page render with useParams reference
     useEffect(() => {
         dispatch({ type: 'FETCH_DETAILS', payload: params })
@@ -19,6 +24,23 @@ export default function Details() {
     // retrieve our store to grab keys for render
     const movie = useSelector(store => store.details[0])
 
+    const saveChanges = () => {
+        dispatch({
+            type: 'EDIT_MOVIE',
+            payload: {
+                id: movie.id,
+                update: {
+                    title: newTitle,
+                    description: newDesc
+                }
+            }
+        });
+        setEditMode(false);
+    }
+
+    const toggleEdit = () => {
+        editMode ? setEditMode(false) : setEditMode(true);
+    }
 
     return (
         <Container>
@@ -32,10 +54,47 @@ export default function Details() {
                             <img className="posterDetails" src={movie.poster} />
                         </Grid>
                         <Grid item xs={8}>
-                            <Typography variant="h3">{movie.title}</Typography>
+                            {/* conditionally rendering Title or TextField based on editMode */}
+                            {editMode
+                                ? <TextField
+                                    sx={{ width: 225 }}
+                                    label="New Title"
+                                    value={newTitle}
+                                    onChange={(e) => setNewTitle(e.target.value)} />
+                                : <Typography variant="h3">{movie.title}</Typography>}
                             <Typography variant="h5">{movie.genre}</Typography>
                             <br />
-                            <Typography variant="body1">{movie.description}</Typography>
+                            {/* conditionally rendering Description or TextField based on editMode */}
+                            {editMode
+                                ? <TextField
+                                    sx={{ width: 575, marginTop: 2 }}
+                                    label="New Description"
+                                    multiline
+                                    rows={5}
+                                    value={newDesc}
+                                    onChange={(e) => setNewDesc(e.target.value)} />
+                                : <Typography variant="body1">{movie.description}</Typography>}
+                            <br />
+                            {/* conditionally rendering buttons based on editMode */}
+                            {editMode
+                                ? <>
+                                    <Button
+                                        sx={{marginTop:2}}
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={saveChanges}>Save</Button>
+                                    <Button
+                                        sx={{marginTop:2, marginLeft: 1}}
+                                        variant="outlined"
+                                        color="secondary"
+                                        onClick={toggleEdit}
+                                    >Cancel
+                                    </Button>
+                                </>
+                                : <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={toggleEdit}>Edit Movie</Button>}
                         </Grid>
                     </Grid >
                     <br />
